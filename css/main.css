@@ -1,0 +1,22 @@
+
+body{
+	background-color:#2a323b;
+}
+h1,h3{
+	color:#dedede;
+}
+header {
+	text-align: center;
+}
+
+#right{
+	position: absolute;
+	right: 30px;
+	top: 10px;
+	text-align: right;
+}
+
+.pourcentage {
+	font-size: 1.5em;
+	color: #d4d4d4;
+}
