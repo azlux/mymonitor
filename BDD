@@ -2,15 +2,12 @@
 
 SET NAMES utf8;
 SET time_zone = '+00:00';
-SET foreign_key_checks = 0;
-SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
-DROP DATABASE IF EXISTS `sensors`;
 CREATE DATABASE `sensors` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `sensors`;
 
-DROP TABLE IF EXISTS `temperature`;
-CREATE TABLE `temperature` (
+DROP TABLE IF EXISTS `data`;
+CREATE TABLE `data` (
   `date` int(11) NOT NULL,
   `temperature_cpu` int(3) NOT NULL,
   `ping1` int(5) NOT NULL,
@@ -18,4 +15,13 @@ CREATE TABLE `temperature` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
--- 2017-05-23 18:29:22
+DROP TABLE IF EXISTS `data_one_day`;
+CREATE TABLE `data_one_day` (
+  `date` int(11) NOT NULL,
+  `temperature_cpu` int(3) NOT NULL,
+  `ping1` int(5) NOT NULL,
+  `load_cpu` int(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+-- 2017-05-24 10:30:07

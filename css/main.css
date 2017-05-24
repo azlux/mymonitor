@@ -16,7 +16,18 @@ header {
 	text-align: right;
 }
 
+#left{
+	position: absolute;
+	left: 30px;
+	top: 10px;
+	text-align: left;
+}
+
 .pourcentage {
 	font-size: 1.5em;
 	color: #d4d4d4;
+}
+a {
+	text-decoration: none;
+	color: #3a9be4;
 }
