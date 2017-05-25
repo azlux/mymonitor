@@ -89,6 +89,15 @@ if (!empty($_POST['range']) && $_POST['range'] != "day") {
     if (!window.jQuery) document.write('<script src="js/jquery.min.js"><\/script>');
     if (!window.Raphael) document.write('<script src="js/raphael-min.js"><\/script>');
     if (!window.Morris) document.write('<script src="js/morris.min.js"><\/script>');
+    
+    setInterval(function() {
+        $.ajax({
+            url: location.href,
+            cache: false,
+            success: function(content) {
+                $("body").html((new DOMParser()).parseFromString(content,"text/html").body.outerHTML);
+        }});}, 1000*60*5);
+
     </script>
 
 </head>
