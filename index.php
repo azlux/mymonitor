@@ -27,20 +27,20 @@ function avg_all_data($dataTime,$dataTempCpu,$dataPing1,$dataLoadCpu,$delta) {
 
 if (!empty($_POST['range']) && $_POST['range'] != "day") {
 	if ($_POST['range'] == "week") {
-		$req = $bdd->query('SELECT * FROM data WHERE date > UNIX_TIMESTAMP(NOW())-604800');
+		$req = $bdd->query('SELECT * FROM data WHERE date > NOW() - INTERVAL 1 WEEK');
 	}
 	elseif ($_POST['range'] == "month") {
-		$req = $bdd->query('SELECT * FROM data WHERE date > UNIX_TIMESTAMP(NOW())-2592000');
+		$req = $bdd->query('SELECT * FROM data WHERE date > NOW() - INTERVAL 1 MONTH');
 	}
 	elseif ($_POST['range'] == "year") {
-		$req = $bdd->query('SELECT * FROM data WHERE date > UNIX_TIMESTAMP(NOW())-31536000');
+		$req = $bdd->query('SELECT * FROM data WHERE date > NOW() - INTERVAL 1 YEAR');
 	}
 	else {
 		exit("LoL Nope");
 	}
 }
 else {
-	$req = $bdd->query('SELECT * FROM data_one_day WHERE date > UNIX_TIMESTAMP(NOW())-86400');
+	$req = $bdd->query('SELECT * FROM data_one_day WHERE date > NOW() - INTERVAL 1 DAY');
 }
 
 # My Disk utilization
@@ -55,7 +55,7 @@ $dataLoadCpu = array();
 
 # Push every data into an array
 while ($temp = $req->fetch(PDO::FETCH_ASSOC)) {
-    array_push($dataTime, floatval($temp['date'])*1000);
+    array_push($dataTime, floatval(strtotime($temp['date']))*1000);
     array_push($dataTempCpu, round($temp['temperature_cpu'])/10);
     array_push($dataPing1, $temp['ping1']);
     array_push($dataLoadCpu, $temp['load_cpu']);
