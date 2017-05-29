@@ -18,7 +18,7 @@ t=$(mysql -ss -u sensors -pth61r5h48tr1h5g1fdhb64ht8jngzsq1e6r5 -D sensors -e "S
 
 if [ $t != 0 ];then
 	# Calculate the avrage of the hour (from data older than 1day)
-	tp_avg_date=$(mysql -ss -u sensors -pth61r5h48tr1h5g1fdhb64ht8jngzsq1e6r5 -ss -D sensors -e "SELECT AVG(UNIX_TIMETAMP(date)) FROM data_one_day WHERE date < NOW() - INTERVAL 1 DAY")
+	tp_avg_date=$(mysql -ss -u sensors -pth61r5h48tr1h5g1fdhb64ht8jngzsq1e6r5 -ss -D sensors -e "SELECT AVG(UNIX_TIMESTAMP(date)) FROM data_one_day WHERE date < NOW() - INTERVAL 1 DAY")
 	tp_avg_tmp_cpu=$(mysql -ss -u sensors -pth61r5h48tr1h5g1fdhb64ht8jngzsq1e6r5 -ss -D sensors -e "SELECT AVG(temperature_cpu) FROM data_one_day WHERE date < NOW() - INTERVAL 1 DAY")
 	tp_avg_ping1=$(mysql -ss -u sensors -pth61r5h48tr1h5g1fdhb64ht8jngzsq1e6r5 -ss -D sensors -e "SELECT AVG(ping1) FROM data_one_day WHERE date < NOW() - INTERVAL 1 DAY")
 	tp_avg_load_cpu=$(mysql -ss -u sensors -pth61r5h48tr1h5g1fdhb64ht8jngzsq1e6r5 -ss -D sensors -e "SELECT AVG(load_cpu) FROM data_one_day WHERE date < NOW() - INTERVAL 1 DAY")
