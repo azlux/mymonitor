@@ -35,7 +35,7 @@ t=$(mysql -ss -u sensors -p************ -D sensors -e "SELECT count(*) FROM data
 
 if [ $t != 0 ];then
         # Calculate the average of the hour (from data older than 1day)
-        tp_avg_date=$(mysql -ss -u sensors -p************ -ss -D sensors -e "SELECT AVG(date) FROM data_one_day WHERE date < NOW() - INTERVAL 1 DAY")
+        tp_avg_date=$(mysql -ss -u sensors -p************ -ss -D sensors -e "SELECT AVG(UNIX_TIMESTAMP(date)) FROM data_one_day WHERE date < NOW() - INTERVAL 1 DAY")
         avg_date=${tp_avg_date%.*}
 	
         query="INSERT INTO data(date"
